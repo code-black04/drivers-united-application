@@ -2,10 +2,7 @@ package com.assignment.entity;
 
 import com.assignment.enums.JobOfferStatus;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "job_offer")
@@ -13,6 +10,7 @@ public class JobOfferEntity {
 
     @Id
     @Column(name = "job_offer_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long jobOfferId;
 
     @Column(name = "driver_id")

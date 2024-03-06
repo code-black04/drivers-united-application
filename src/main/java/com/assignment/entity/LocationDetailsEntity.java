@@ -1,9 +1,6 @@
 package com.assignment.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "location_details")
@@ -11,6 +8,7 @@ public class LocationDetailsEntity {
 
     @Id
     @Column(name = "location_details_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long locationDetailsId;
 
     @Column(name = "pick_up_location_coordinates")

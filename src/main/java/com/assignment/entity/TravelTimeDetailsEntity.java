@@ -1,9 +1,6 @@
 package com.assignment.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -14,6 +11,7 @@ public class TravelTimeDetailsEntity {
 
     @Id
     @Column(name = "travel_time_details")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String travelTimeDetailsId;
 
     @Column(name = "date")

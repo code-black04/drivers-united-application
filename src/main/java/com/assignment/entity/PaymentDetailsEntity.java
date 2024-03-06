@@ -2,10 +2,7 @@ package com.assignment.entity;
 
 import com.assignment.enums.PaymentStatus;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "payment_details")
@@ -13,6 +10,7 @@ public class PaymentDetailsEntity {
 
     @Id
     @Column(name = "payment_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long paymentId;
 
     @Column(name = "payment_amount")
