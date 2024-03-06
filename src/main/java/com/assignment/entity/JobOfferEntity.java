@@ -10,7 +10,7 @@ public class JobOfferEntity {
 
     @Id
     @Column(name = "job_offer_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long jobOfferId;
 
     @Column(name = "driver_id")

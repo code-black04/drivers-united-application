@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "driver_details")
 public class DriverEntity {
 
-    @Column(name = "driver_Id")
+    @Column(name = "driver_id")
     @Id
     private String driverId;
 

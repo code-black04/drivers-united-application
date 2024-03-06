@@ -10,7 +10,7 @@ public class PaymentDetailsEntity {
 
     @Id
     @Column(name = "payment_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long paymentId;
 
     @Column(name = "payment_amount")

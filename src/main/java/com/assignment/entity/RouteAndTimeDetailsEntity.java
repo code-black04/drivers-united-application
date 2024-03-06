@@ -8,7 +8,7 @@ public class RouteAndTimeDetailsEntity {
 
     @Id
     @Column(name = "route_and_time_details_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String routeAndTimeDetailsId;
 
     public String getRouteAndTimeDetailsId() {

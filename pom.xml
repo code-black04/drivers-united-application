@@ -101,6 +101,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.5.6</version>
+                <configuration>
+                    <finalName>drivers-united-app</finalName>
+                </configuration>
             </plugin>
         </plugins>
     </build>

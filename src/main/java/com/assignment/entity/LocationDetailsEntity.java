@@ -8,7 +8,7 @@ public class LocationDetailsEntity {
 
     @Id
     @Column(name = "location_details_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long locationDetailsId;
 
     @Column(name = "pick_up_location_coordinates")

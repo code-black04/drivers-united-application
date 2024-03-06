@@ -11,7 +11,7 @@ public class TravelTimeDetailsEntity {
 
     @Id
     @Column(name = "travel_time_details")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String travelTimeDetailsId;
 
     @Column(name = "date")
