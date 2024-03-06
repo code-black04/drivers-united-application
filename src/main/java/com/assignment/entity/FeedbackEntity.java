@@ -5,8 +5,10 @@ import com.assignment.enums.FeedbackStatus;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "feedback_report")
+@Entity
+@Table(name = "feedback_report")
 public class FeedbackEntity {
 
     @Id

@@ -3,8 +3,10 @@ package com.assignment.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "location_details")
+@Entity
+@Table(name = "location_details")
 public class LocationDetailsEntity {
 
     @Id

@@ -5,8 +5,10 @@ import com.assignment.enums.JobOfferStatus;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "job_offer")
+@Entity
+@Table(name = "job_offer")
 public class JobOfferEntity {
 
     @Id

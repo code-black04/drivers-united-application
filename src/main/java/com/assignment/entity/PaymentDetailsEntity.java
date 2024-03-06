@@ -5,8 +5,10 @@ import com.assignment.enums.PaymentStatus;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "payment_details")
+@Entity
+@Table(name = "payment_details")
 public class PaymentDetailsEntity {
 
     @Id

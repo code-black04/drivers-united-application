@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Value;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "driver_details")
+@Entity
+@Table(name = "driver_details")
 public class DriverEntity {
 
-    @Column(name = "driver_Id", unique = true, insertable = false)
+    @Column(name = "driver_Id")
     @Id
     private String driverId;
 

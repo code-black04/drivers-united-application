@@ -3,11 +3,13 @@ package com.assignment.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-@Entity(name = "travel_time_details")
+@Entity
+@Table(name = "travel_time_details")
 public class TravelTimeDetailsEntity {
 
     @Id
