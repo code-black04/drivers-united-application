@@ -14,12 +14,12 @@ public class FeedbackDtoEntityMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    private FeedbackDto convertToFeedbackDto(FeedbackEntity feedbackEntity) {
+    public FeedbackDto convertToFeedbackDto(FeedbackEntity feedbackEntity) {
         FeedbackDto feedbackDto = modelMapper.map(feedbackEntity, FeedbackDto.class);
         return feedbackDto;
     }
 
-    private FeedbackEntity convertToFeedbackEntity(FeedbackDto feedbackDto) {
+    public FeedbackEntity convertToFeedbackEntity(FeedbackDto feedbackDto) {
         FeedbackEntity feedbackEntity = modelMapper.map(feedbackDto, FeedbackEntity.class);
         return feedbackEntity;
     }
