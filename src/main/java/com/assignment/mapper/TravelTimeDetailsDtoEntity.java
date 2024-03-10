@@ -12,12 +12,12 @@ public class TravelTimeDetailsDtoEntity {
     @Autowired
     private ModelMapper modelMapper;
 
-    private TravelTimeDetailsDto convertToTravelTimeDetailsDto(TravelTimeDetailsEntity travelTimeDetailsEntity) {
+    public TravelTimeDetailsDto convertToTravelTimeDetailsDto(TravelTimeDetailsEntity travelTimeDetailsEntity) {
         TravelTimeDetailsDto travelTimeDetailsDto = modelMapper.map(travelTimeDetailsEntity, TravelTimeDetailsDto.class);
         return travelTimeDetailsDto;
     }
 
-    private TravelTimeDetailsEntity convertToTravelTimeDetailsEntity(TravelTimeDetailsDto travelTimeDetailsDto) {
+    public TravelTimeDetailsEntity convertToTravelTimeDetailsEntity(TravelTimeDetailsDto travelTimeDetailsDto) {
         TravelTimeDetailsEntity travelTimeDetailsEntity = modelMapper.map(travelTimeDetailsDto, TravelTimeDetailsEntity.class);
         return travelTimeDetailsEntity;
     }

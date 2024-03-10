@@ -12,12 +12,12 @@ public class LocationDetailsDtoEntityMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    private LocationDetailsDto convertToLocationDetailsDto(LocationDetailsEntity locationDetailsEntity) {
+    public LocationDetailsDto convertToLocationDetailsDto(LocationDetailsEntity locationDetailsEntity) {
         LocationDetailsDto locationDetailsDto = modelMapper.map(locationDetailsEntity, LocationDetailsDto.class);
         return locationDetailsDto;
     }
 
-    private LocationDetailsEntity convertToLocationDetailsEntity(LocationDetailsDto locationDetailsDto) {
+    public LocationDetailsEntity convertToLocationDetailsEntity(LocationDetailsDto locationDetailsDto) {
         LocationDetailsEntity locationDetailsEntity = modelMapper.map(locationDetailsDto, LocationDetailsEntity.class);
         return locationDetailsEntity;
     }

@@ -12,12 +12,12 @@ public class JobConfirmationDtoEntityMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    private JobConfirmationDto convertToJobConfirmationDto(JobConfirmationEntity jobConfirmationEntity) {
+    public JobConfirmationDto convertToJobConfirmationDto(JobConfirmationEntity jobConfirmationEntity) {
         JobConfirmationDto jobConfirmationDto = modelMapper.map(jobConfirmationEntity, JobConfirmationDto.class);
         return jobConfirmationDto;
     }
 
-    private JobConfirmationEntity convertToJobConfirmationEntity(JobConfirmationDto jobConfirmationDto) {
+    public JobConfirmationEntity convertToJobConfirmationEntity(JobConfirmationDto jobConfirmationDto) {
         JobConfirmationEntity jobConfirmationEntity = modelMapper.map(jobConfirmationDto, JobConfirmationEntity.class);
         return jobConfirmationEntity;
     }

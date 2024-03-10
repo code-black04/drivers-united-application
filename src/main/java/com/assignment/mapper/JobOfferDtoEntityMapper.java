@@ -12,12 +12,12 @@ public class JobOfferDtoEntityMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    private JobOfferDto convertToJobOfferDto(JobOfferEntity jobOfferEntity) {
+    public JobOfferDto convertToJobOfferDto(JobOfferEntity jobOfferEntity) {
         JobOfferDto jobOfferDto = modelMapper.map(jobOfferEntity, JobOfferDto.class);
         return jobOfferDto;
     }
 
-    private JobOfferEntity convertToJobOfferEntity(JobOfferDto jobOfferDto) {
+    public JobOfferEntity convertToJobOfferEntity(JobOfferDto jobOfferDto) {
         JobOfferEntity jobOfferEntity = modelMapper.map(jobOfferDto, JobOfferEntity.class);
         return jobOfferEntity;
     }

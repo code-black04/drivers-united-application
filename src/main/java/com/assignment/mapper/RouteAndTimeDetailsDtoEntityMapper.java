@@ -12,12 +12,12 @@ public class RouteAndTimeDetailsDtoEntityMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    private RouteAndTimeDetailsDto convertToRouteAndTimeDetailsDto(RouteAndTimeDetailsEntity routeAndTimeDetailsEntity) {
+    public RouteAndTimeDetailsDto convertToRouteAndTimeDetailsDto(RouteAndTimeDetailsEntity routeAndTimeDetailsEntity) {
         RouteAndTimeDetailsDto routeAndTimeDetailsDto = modelMapper.map(routeAndTimeDetailsEntity, RouteAndTimeDetailsDto.class);
         return routeAndTimeDetailsDto;
     }
 
-    private RouteAndTimeDetailsEntity convertToRouteAndTimeDetailsEntity(RouteAndTimeDetailsDto routeAndTimeDetailsDto) {
+    public RouteAndTimeDetailsEntity convertToRouteAndTimeDetailsEntity(RouteAndTimeDetailsDto routeAndTimeDetailsDto) {
         RouteAndTimeDetailsEntity routeAndTimeDetailsEntity = modelMapper.map(routeAndTimeDetailsDto, RouteAndTimeDetailsEntity.class);
         return routeAndTimeDetailsEntity;
     }

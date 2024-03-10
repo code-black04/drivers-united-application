@@ -12,12 +12,12 @@ public class DriverDtoEntityMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    private DriverDto convertToDriverDto(DriverEntity driverEntity) {
+    public DriverDto convertToDriverDto(DriverEntity driverEntity) {
         DriverDto driverDto = modelMapper.map(driverEntity, DriverDto.class);
         return driverDto;
     }
 
-    private DriverEntity convertToDriverEntity(DriverDto driverDto) {
+    public DriverEntity convertToDriverEntity(DriverDto driverDto) {
         DriverEntity driverEntity = modelMapper.map(driverDto, DriverEntity.class);
         return driverEntity;
     }

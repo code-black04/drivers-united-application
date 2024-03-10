@@ -12,12 +12,12 @@ public class  PaymentDetailsDtoEntityMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    private PaymentDetailsDto convertToPaymentDetailsDto(PaymentDetailsEntity paymentDetailsEntity) {
+    public PaymentDetailsDto convertToPaymentDetailsDto(PaymentDetailsEntity paymentDetailsEntity) {
         PaymentDetailsDto paymentDetailsDto = modelMapper.map(paymentDetailsEntity, PaymentDetailsDto.class);
         return paymentDetailsDto;
     }
     
-    private PaymentDetailsEntity convertToPaymentDetailsEntity(PaymentDetailsDto paymentDetailsDto) {
+    public PaymentDetailsEntity convertToPaymentDetailsEntity(PaymentDetailsDto paymentDetailsDto) {
         PaymentDetailsEntity paymentDetailsEntity = modelMapper.map(paymentDetailsDto, PaymentDetailsEntity.class);
         return paymentDetailsEntity;
     }
