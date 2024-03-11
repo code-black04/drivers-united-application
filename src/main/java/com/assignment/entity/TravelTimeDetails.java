@@ -1,22 +1,19 @@
-package com.assignment.dtos;
+package com.assignment.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
-public class TravelTimeDetailsDto {
+@Embeddable
+public class TravelTimeDetails {
 
-    @JsonProperty(value = "date")
     private LocalDateTime date;
 
-    @JsonProperty(value = "time")
     private LocalDateTime time;
 
-
-    public TravelTimeDetailsDto() {
+    public TravelTimeDetails() {
     }
 
-    public TravelTimeDetailsDto(LocalDateTime date, LocalDateTime time) {
+    public TravelTimeDetails(LocalDateTime date, LocalDateTime time) {
         this.date = date;
         this.time = time;
     }
@@ -39,7 +36,7 @@ public class TravelTimeDetailsDto {
 
     @Override
     public String toString() {
-        return "TravelTimeDetailsDto{" +
+        return "TravelTimeDetails{" +
                 "date=" + date +
                 ", time=" + time +
                 '}';

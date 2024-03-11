@@ -8,14 +8,36 @@ public class JobOfferDto {
     @JsonProperty(value = "jobOfferId")
     private Long jobOfferId;
 
-    @JsonProperty(value = "driverId")
-    private String driverId;
-
     @JsonProperty(value = "jobOfferStatus")
     private JobOfferStatus jobOfferStatus;
 
     @JsonProperty(value = "jobOfferDescription")
     private String jobOfferDescription;
+
+    @JsonProperty(value = "driver")
+    private DriverDto driver;
+
+    @JsonProperty(value = "routeAndTimeDetails")
+    private RouteAndTimeDetailsDto routeAndTimeDetails;
+
+    @JsonProperty(value = "paymentDetails")
+    private PaymentDetailsDto paymentDetails;
+
+    @JsonProperty(value = "jobConfirmation")
+    private JobConfirmationDto jobConfirmation;
+
+    public JobOfferDto() {
+    }
+
+    public JobOfferDto(Long jobOfferId, JobOfferStatus jobOfferStatus, String jobOfferDescription, DriverDto driver, RouteAndTimeDetailsDto routeAndTimeDetails, PaymentDetailsDto paymentDetails, JobConfirmationDto jobConfirmation) {
+        this.jobOfferId = jobOfferId;
+        this.jobOfferStatus = jobOfferStatus;
+        this.jobOfferDescription = jobOfferDescription;
+        this.driver = driver;
+        this.routeAndTimeDetails = routeAndTimeDetails;
+        this.paymentDetails = paymentDetails;
+        this.jobConfirmation = jobConfirmation;
+    }
 
     public Long getJobOfferId() {
         return jobOfferId;
@@ -25,12 +47,36 @@ public class JobOfferDto {
         this.jobOfferId = jobOfferId;
     }
 
-    public String getDriverId() {
-        return driverId;
+    public DriverDto getDriver() {
+        return driver;
     }
 
-    public void setDriverId(String driverId) {
-        this.driverId = driverId;
+    public void setDriver(DriverDto driver) {
+        this.driver = driver;
+    }
+
+    public RouteAndTimeDetailsDto getRouteAndTimeDetails() {
+        return routeAndTimeDetails;
+    }
+
+    public void setRouteAndTimeDetails(RouteAndTimeDetailsDto routeAndTimeDetails) {
+        this.routeAndTimeDetails = routeAndTimeDetails;
+    }
+
+    public PaymentDetailsDto getPaymentDetails() {
+        return paymentDetails;
+    }
+
+    public void setPaymentDetails(PaymentDetailsDto paymentDetails) {
+        this.paymentDetails = paymentDetails;
+    }
+
+    public JobConfirmationDto getJobConfirmation() {
+        return jobConfirmation;
+    }
+
+    public void setJobConfirmation(JobConfirmationDto jobConfirmation) {
+        this.jobConfirmation = jobConfirmation;
     }
 
     public JobOfferStatus getJobOfferStatus() {
@@ -47,5 +93,18 @@ public class JobOfferDto {
 
     public void setJobOfferDescription(String jobOfferDescription) {
         this.jobOfferDescription = jobOfferDescription;
+    }
+
+    @Override
+    public String toString() {
+        return "JobOfferDto{" +
+                "jobOfferId=" + jobOfferId +
+                ", jobOfferStatus=" + jobOfferStatus +
+                ", jobOfferDescription='" + jobOfferDescription + '\'' +
+                ", driver=" + driver +
+                ", routeAndTimeDetails=" + routeAndTimeDetails +
+                ", paymentDetails=" + paymentDetails +
+                ", jobConfirmation=" + jobConfirmation +
+                '}';
     }
 }

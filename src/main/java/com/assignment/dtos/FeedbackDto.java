@@ -8,14 +8,24 @@ public class FeedbackDto {
     @JsonProperty(value = "feedbackId")
     private Long feedbackId;
 
-    @JsonProperty(value = "driverId")
-    private String driverId;
-
     @JsonProperty(value = "feedbackStatus")
     private FeedbackStatus feedbackStatus;
 
     @JsonProperty(value = "feedbackDescription")
     private String feedbackDescription;
+
+    @JsonProperty(value = "driver")
+    private DriverDto driver;
+
+    public FeedbackDto() {
+    }
+
+    public FeedbackDto(Long feedbackId, FeedbackStatus feedbackStatus, String feedbackDescription, DriverDto driver) {
+        this.feedbackId = feedbackId;
+        this.feedbackStatus = feedbackStatus;
+        this.feedbackDescription = feedbackDescription;
+        this.driver = driver;
+    }
 
     public Long getFeedbackId() {
         return feedbackId;
@@ -23,14 +33,6 @@ public class FeedbackDto {
 
     public void setFeedbackId(Long feedbackId) {
         this.feedbackId = feedbackId;
-    }
-
-    public String getDriverId() {
-        return driverId;
-    }
-
-    public void setDriverId(String driverId) {
-        this.driverId = driverId;
     }
 
     public FeedbackStatus getFeedbackStatus() {
@@ -47,5 +49,16 @@ public class FeedbackDto {
 
     public void setFeedbackDescription(String feedbackDescription) {
         this.feedbackDescription = feedbackDescription;
+    }
+
+
+    @Override
+    public String toString() {
+        return "FeedbackDto{" +
+                "feedbackId=" + feedbackId +
+                ", feedbackStatus=" + feedbackStatus +
+                ", feedbackDescription='" + feedbackDescription + '\'' +
+                ", driver=" + driver +
+                '}';
     }
 }

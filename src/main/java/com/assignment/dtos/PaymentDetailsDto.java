@@ -14,11 +14,22 @@ public class PaymentDetailsDto {
     @JsonProperty(value = "paymentStatus")
     private PaymentStatus paymentStatus;
 
-    @JsonProperty(value = "jobOfferId")
-    private String jobOfferId;
+    @JsonProperty(value = "jobOffer")
+    private JobOfferDto jobOffer;
 
-    @JsonProperty(value = "driverId")
-    private String driverId;
+    @JsonProperty(value = "driver")
+    private DriverDto driver;
+
+    public PaymentDetailsDto() {
+    }
+
+    public PaymentDetailsDto(String paymentId, Float paymentAmount, PaymentStatus paymentStatus, JobOfferDto jobOffer, DriverDto driver) {
+        this.paymentId = paymentId;
+        this.paymentAmount = paymentAmount;
+        this.paymentStatus = paymentStatus;
+        this.jobOffer = jobOffer;
+        this.driver = driver;
+    }
 
     public String getPaymentId() {
         return paymentId;
@@ -44,19 +55,30 @@ public class PaymentDetailsDto {
         this.paymentStatus = paymentStatus;
     }
 
-    public String getJobOfferId() {
-        return jobOfferId;
+    public JobOfferDto getJobOffer() {
+        return jobOffer;
     }
 
-    public void setJobOfferId(String jobOfferId) {
-        this.jobOfferId = jobOfferId;
+    public void setJobOffer(JobOfferDto jobOffer) {
+        this.jobOffer = jobOffer;
     }
 
-    public String getDriverId() {
-        return driverId;
+    public DriverDto getDriver() {
+        return driver;
     }
 
-    public void setDriverId(String driverId) {
-        this.driverId = driverId;
+    public void setDriver(DriverDto driver) {
+        this.driver = driver;
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentDetailsDto{" +
+                "paymentId='" + paymentId + '\'' +
+                ", paymentAmount=" + paymentAmount +
+                ", paymentStatus=" + paymentStatus +
+                ", jobOffer=" + jobOffer +
+                ", driver=" + driver +
+                '}';
     }
 }

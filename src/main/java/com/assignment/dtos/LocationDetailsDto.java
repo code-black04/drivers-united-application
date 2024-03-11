@@ -1,14 +1,9 @@
 package com.assignment.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.beans.factory.parsing.Location;
-
-import javax.tools.DocumentationTool;
 
 public class LocationDetailsDto {
 
-    @JsonProperty(value = "locationDetailsId")
-    private Long locationDetailsId;
 
     @JsonProperty(value = "pickUpLocationCoordinates")
     private String pickUpLocationCoordinates;
@@ -16,12 +11,12 @@ public class LocationDetailsDto {
     @JsonProperty(value = "dropOffLocationCoordinates")
     private String dropOffLocationCoordinates;
 
-    public Long getLocationDetailsId() {
-        return locationDetailsId;
+    public LocationDetailsDto() {
     }
 
-    public void setLocationDetailsId(Long locationDetailsId) {
-        this.locationDetailsId = locationDetailsId;
+    public LocationDetailsDto(String pickUpLocationCoordinates, String dropOffLocationCoordinates) {
+        this.pickUpLocationCoordinates = pickUpLocationCoordinates;
+        this.dropOffLocationCoordinates = dropOffLocationCoordinates;
     }
 
     public String getPickUpLocationCoordinates() {
@@ -38,5 +33,13 @@ public class LocationDetailsDto {
 
     public void setDropOffLocationCoordinates(String dropOffLocationCoordinates) {
         this.dropOffLocationCoordinates = dropOffLocationCoordinates;
+    }
+
+    @Override
+    public String toString() {
+        return "LocationDetailsDto{" +
+                "pickUpLocationCoordinates='" + pickUpLocationCoordinates + '\'' +
+                ", dropOffLocationCoordinates='" + dropOffLocationCoordinates + '\'' +
+                '}';
     }
 }

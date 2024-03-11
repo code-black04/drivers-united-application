@@ -1,28 +1,21 @@
 package com.assignment.entity;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
 
-@Entity
-@Table(name = "location_details")
-public class LocationDetailsEntity {
+@Embeddable
+public class LocationDetails {
 
-    @Id
-    @Column(name = "location_details_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long locationDetailsId;
 
-    @Column(name = "pick_up_location_coordinates")
     private String pickUpLocationCoordinates;
 
-    @Column(name = "drop_off_location_coordinates")
     private String dropOffLocationCoordinates;
 
-    public Long getLocationDetailsId() {
-        return locationDetailsId;
+    public LocationDetails() {
     }
 
-    public void setLocationDetailsId(Long locationDetailsId) {
-        this.locationDetailsId = locationDetailsId;
+    public LocationDetails(String pickUpLocationCoordinates, String dropOffLocationCoordinates) {
+        this.pickUpLocationCoordinates = pickUpLocationCoordinates;
+        this.dropOffLocationCoordinates = dropOffLocationCoordinates;
     }
 
     public String getPickUpLocationCoordinates() {
@@ -39,5 +32,13 @@ public class LocationDetailsEntity {
 
     public void setDropOffLocationCoordinates(String dropOffLocationCoordinates) {
         this.dropOffLocationCoordinates = dropOffLocationCoordinates;
+    }
+
+    @Override
+    public String toString() {
+        return "LocationDetails{" +
+                "pickUpLocationCoordinates='" + pickUpLocationCoordinates + '\'' +
+                ", dropOffLocationCoordinates='" + dropOffLocationCoordinates + '\'' +
+                '}';
     }
 }
