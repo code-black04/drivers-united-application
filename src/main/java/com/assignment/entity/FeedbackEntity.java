@@ -13,14 +13,25 @@ public class FeedbackEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long feedbackId;
 
-    @Column(name = "driver_id")
-    private String driverId;
-
     @Column(name = "feedback_status")
     private FeedbackStatus feedbackStatus;
 
     @Column(name = "feedback_description")
     private String feedbackDescription;
+
+    @ManyToOne
+    @JoinColumn(name = "driver_id")
+    private DriverEntity driver;
+
+    public FeedbackEntity() {
+    }
+
+    public FeedbackEntity(Long feedbackId, FeedbackStatus feedbackStatus, String feedbackDescription, DriverEntity driver) {
+        this.feedbackId = feedbackId;
+        this.feedbackStatus = feedbackStatus;
+        this.feedbackDescription = feedbackDescription;
+        this.driver = driver;
+    }
 
     public Long getFeedbackId() {
         return feedbackId;
@@ -28,14 +39,6 @@ public class FeedbackEntity {
 
     public void setFeedbackId(Long feedbackId) {
         this.feedbackId = feedbackId;
-    }
-
-    public String getDriverId() {
-        return driverId;
-    }
-
-    public void setDriverId(String driverId) {
-        this.driverId = driverId;
     }
 
     public FeedbackStatus getFeedbackStatus() {
@@ -52,5 +55,23 @@ public class FeedbackEntity {
 
     public void setFeedbackDescription(String feedbackDescription) {
         this.feedbackDescription = feedbackDescription;
+    }
+
+    public DriverEntity getDriver() {
+        return driver;
+    }
+
+    public void setDriver(DriverEntity driver) {
+        this.driver = driver;
+    }
+
+    @Override
+    public String toString() {
+        return "FeedbackEntity{" +
+                "feedbackId=" + feedbackId +
+                ", feedbackStatus=" + feedbackStatus +
+                ", feedbackDescription='" + feedbackDescription + '\'' +
+                ", driver=" + driver +
+                '}';
     }
 }

@@ -11,8 +11,20 @@ public class JobConfirmationDto {
     @JsonProperty(value = "jobOfferStatus")
     private JobOfferStatus jobOfferStatus;
 
-    @JsonProperty(value = "driverId")
-    private String driverId;
+    @JsonProperty(value = "driver")
+    private DriverDto driver;
+    @JsonProperty(value = "jobOffer")
+    private JobOfferDto jobOffer;
+
+    public JobConfirmationDto() {
+    }
+
+    public JobConfirmationDto(Long jobOfferId, JobOfferStatus jobOfferStatus, DriverDto driver, JobOfferDto jobOffer) {
+        this.jobOfferId = jobOfferId;
+        this.jobOfferStatus = jobOfferStatus;
+        this.driver = driver;
+        this.jobOffer = jobOffer;
+    }
 
     public Long getJobOfferId() {
         return jobOfferId;
@@ -30,11 +42,29 @@ public class JobConfirmationDto {
         this.jobOfferStatus = jobOfferStatus;
     }
 
-    public String getDriverId() {
-        return driverId;
+    public DriverDto getDriver() {
+        return driver;
     }
 
-    public void setDriverId(String driverId) {
-        this.driverId = driverId;
+    public void setDriver(DriverDto driver) {
+        this.driver = driver;
+    }
+
+    public JobOfferDto getJobOffer() {
+        return jobOffer;
+    }
+
+    public void setJobOffer(JobOfferDto jobOffer) {
+        this.jobOffer = jobOffer;
+    }
+
+    @Override
+    public String toString() {
+        return "JobConfirmationDto{" +
+                "jobOfferId=" + jobOfferId +
+                ", jobOfferStatus=" + jobOfferStatus +
+                ", driver=" + driver +
+                ", jobOffer=" + jobOffer +
+                '}';
     }
 }

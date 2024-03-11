@@ -19,11 +19,25 @@ public class PaymentDetailsEntity {
     @Column(name = "payment_status")
     private PaymentStatus paymentStatus;
 
-    @Column(name = "job_offer_id")
-    private Long jobOfferId;
+    @OneToOne
+    @JoinColumn(name = "job_offer_id")
+    private JobOfferEntity jobOffer;
 
-    @Column(name = "driver_id")
-    private String driverId;
+    @ManyToOne
+    @JoinColumn(name = "driver_id")
+    private DriverEntity driver;
+
+
+    public PaymentDetailsEntity(Long paymentId, Float paymentAmount, PaymentStatus paymentStatus, JobOfferEntity jobOffer, DriverEntity driver) {
+        this.paymentId = paymentId;
+        this.paymentAmount = paymentAmount;
+        this.paymentStatus = paymentStatus;
+        this.jobOffer = jobOffer;
+        this.driver = driver;
+    }
+
+    public PaymentDetailsEntity() {
+    }
 
     public Long getPaymentId() {
         return paymentId;
@@ -49,19 +63,30 @@ public class PaymentDetailsEntity {
         this.paymentStatus = paymentStatus;
     }
 
-    public Long getJobOfferId() {
-        return jobOfferId;
+    public JobOfferEntity getJobOffer() {
+        return jobOffer;
     }
 
-    public void setJobOfferId(Long jobOfferId) {
-        this.jobOfferId = jobOfferId;
+    public void setJobOffer(JobOfferEntity jobOffer) {
+        this.jobOffer = jobOffer;
     }
 
-    public String getDriverId() {
-        return driverId;
+    public DriverEntity getDriver() {
+        return driver;
     }
 
-    public void setDriverId(String driverId) {
-        this.driverId = driverId;
+    public void setDriver(DriverEntity driver) {
+        this.driver = driver;
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentDetailsEntity{" +
+                "paymentId=" + paymentId +
+                ", paymentAmount=" + paymentAmount +
+                ", paymentStatus=" + paymentStatus +
+                ", jobOffer=" + jobOffer +
+                ", driver=" + driver +
+                '}';
     }
 }
