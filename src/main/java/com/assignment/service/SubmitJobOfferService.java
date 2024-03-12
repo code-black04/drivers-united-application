@@ -63,7 +63,7 @@ public class SubmitJobOfferService {
                 jobOfferDto.setPaymentDetails(new PaymentDetailsDto());
             }
             jobOfferDto.getPaymentDetails().setPaymentAmount(paymentAmount);
-            jobOfferDto.getPaymentDetails().setPaymentStatus(com.assignment.enums.PaymentStatus.INITIALIZE);
+            jobOfferDto.getPaymentDetails().setPaymentStatus(com.assignment.enums.PaymentStatus.INITIALISE);
         } else {
             throw new RuntimeException("Failed to calculate route.");
         }
