@@ -3,17 +3,17 @@ package com.assignment.entity;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class LocationDetails {
+public class LocationDetailsEntity {
 
 
     private String pickUpLocationCoordinates;
 
     private String dropOffLocationCoordinates;
 
-    public LocationDetails() {
+    public LocationDetailsEntity() {
     }
 
-    public LocationDetails(String pickUpLocationCoordinates, String dropOffLocationCoordinates) {
+    public LocationDetailsEntity(String pickUpLocationCoordinates, String dropOffLocationCoordinates) {
         this.pickUpLocationCoordinates = pickUpLocationCoordinates;
         this.dropOffLocationCoordinates = dropOffLocationCoordinates;
     }
