@@ -30,6 +30,14 @@ public class RouteAndTimeDetailsDto {
         this.routeAndTimeDetailsId = routeAndTimeDetailsId;
     }
 
+    public LocationDetailsDto getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(LocationDetailsDto location) {
+        this.location = location;
+    }
+    
     @Override
     public String toString() {
         return "RouteAndTimeDetailsDto{" +
