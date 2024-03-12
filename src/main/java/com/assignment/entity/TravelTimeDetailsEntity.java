@@ -4,16 +4,16 @@ import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
 @Embeddable
-public class TravelTimeDetails {
+public class TravelTimeDetailsEntity {
 
     private LocalDateTime date;
 
     private LocalDateTime time;
 
-    public TravelTimeDetails() {
+    public TravelTimeDetailsEntity() {
     }
 
-    public TravelTimeDetails(LocalDateTime date, LocalDateTime time) {
+    public TravelTimeDetailsEntity(LocalDateTime date, LocalDateTime time) {
         this.date = date;
         this.time = time;
     }

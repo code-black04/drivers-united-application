@@ -12,16 +12,16 @@ public class RouteAndTimeDetailsEntity {
     private String routeAndTimeDetailsId;
 
     @Embedded
-    private TravelTimeDetails travelTimeDetails;
+    private TravelTimeDetailsEntity travelTimeDetails;
 
     @Embedded
-    private  LocationDetails location;
+    private LocationDetailsEntity location;
 
 
     public RouteAndTimeDetailsEntity() {
     }
 
-    public RouteAndTimeDetailsEntity(String routeAndTimeDetailsId, TravelTimeDetails travelTimeDetails, LocationDetails location) {
+    public RouteAndTimeDetailsEntity(String routeAndTimeDetailsId, TravelTimeDetailsEntity travelTimeDetails, LocationDetailsEntity location) {
         this.routeAndTimeDetailsId = routeAndTimeDetailsId;
         this.travelTimeDetails = travelTimeDetails;
         this.location = location;
@@ -35,19 +35,19 @@ public class RouteAndTimeDetailsEntity {
         this.routeAndTimeDetailsId = routeAndTimeDetailsId;
     }
 
-    public TravelTimeDetails getTravelTimeDetails() {
+    public TravelTimeDetailsEntity getTravelTimeDetails() {
         return travelTimeDetails;
     }
 
-    public void setTravelTimeDetails(TravelTimeDetails travelTimeDetails) {
+    public void setTravelTimeDetails(TravelTimeDetailsEntity travelTimeDetails) {
         this.travelTimeDetails = travelTimeDetails;
     }
 
-    public LocationDetails getLocation() {
+    public LocationDetailsEntity getLocation() {
         return location;
     }
 
-    public void setLocation(LocationDetails location) {
+    public void setLocation(LocationDetailsEntity location) {
         this.location = location;
     }
 
