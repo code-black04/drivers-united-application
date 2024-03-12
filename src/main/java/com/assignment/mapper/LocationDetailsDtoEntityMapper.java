@@ -1,7 +1,7 @@
 package com.assignment.mapper;
 
 import com.assignment.dtos.LocationDetailsDto;
-import com.assignment.entity.LocationDetailsEntity;
+import com.assignment.entity.LocationDetails;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,13 +12,13 @@ public class LocationDetailsDtoEntityMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    public LocationDetailsDto convertToLocationDetailsDto(LocationDetailsEntity locationDetailsEntity) {
+    public LocationDetailsDto convertToLocationDetailsDto(LocationDetails locationDetailsEntity) {
         LocationDetailsDto locationDetailsDto = modelMapper.map(locationDetailsEntity, LocationDetailsDto.class);
         return locationDetailsDto;
     }
 
-    public LocationDetailsEntity convertToLocationDetailsEntity(LocationDetailsDto locationDetailsDto) {
-        LocationDetailsEntity locationDetailsEntity = modelMapper.map(locationDetailsDto, LocationDetailsEntity.class);
+    public LocationDetails convertToLocationDetailsEntity(LocationDetailsDto locationDetailsDto) {
+        LocationDetails locationDetailsEntity = modelMapper.map(locationDetailsDto, LocationDetails.class);
         return locationDetailsEntity;
     }
     
