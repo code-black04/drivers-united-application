@@ -1,9 +1,14 @@
 package com.assignment.service;
 
+import com.assignment.dtos.DeliveryJobOfferDTO;
 import com.assignment.dtos.JobOfferDto;
+import com.assignment.entity.DeliveryJobOfferEntity;
 import com.assignment.entity.JobOfferEntity;
+import com.assignment.mapper.DeliveryJobOfferDtoEntityMapper;
 import com.assignment.mapper.JobOfferDtoEntityMapper;
+import com.assignment.repository.DeliveryJobOfferRepository;
 import com.assignment.repository.JobOfferRepository;
+import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +19,20 @@ public class AvailableJobService {
     private static final Logger logger = LoggerFactory.getLogger(AvailableJobService.class);
 
     @Autowired
-    private JobOfferRepository jobOfferRepository;
+    private DeliveryJobOfferRepository jobOfferRepository;
 
     @Autowired
-    private JobOfferDtoEntityMapper jobOfferDtoEntityMapper;
+    private DeliveryJobOfferDtoEntityMapper jobOfferDtoEntityMapper;
 
-    public JobOfferDto getAvailableJobOfferById(long jobOfferId) {
+    public DeliveryJobOfferDTO getAvailableJobOfferById(String jobOfferId, String driverId) {
         logger.info("AvailableJobService: getAvailableJobOfferById {}", jobOfferId);
-
-        JobOfferEntity jobOfferEntity = jobOfferRepository.findById(jobOfferId).orElse(null);
-        JobOfferDto jobOfferDto = null;
-
-        if (jobOfferEntity != null) {
-            jobOfferDto = jobOfferDtoEntityMapper.convertToJobOfferDto(jobOfferEntity);
-        }
-
-        return jobOfferDto;
+        DeliveryJobOfferEntity jobOfferEntity = jobOfferRepository.getById(jobOfferId);
+        if (driverId.equals(jobOfferEntity.getDriverId()) && driverId == jobOfferEntity.getDriverId().toString()) {
+            DeliveryJobOfferDTO jobOfferDto = null;
+            if (jobOfferEntity != null)
+                jobOfferDto = jobOfferDtoEntityMapper.convertToDeliveryJobOfferDto(jobOfferEntity);
+            return jobOfferDto;
+        } else
+            return null;
     }
 }
