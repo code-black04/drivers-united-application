@@ -17,13 +17,13 @@ public class EnterJobOffersController {
 
     EnterJobOfferService enterJobOfferService;
     @PostMapping("/jobs")
-    private ResponseEntity<String> saveJobOffer(@RequestBody JobOfferDto jobOffer, @RequestParam String driverId) throws Exception {
+    private ResponseEntity<JobOfferDto> saveJobOffer(@RequestBody JobOfferDto jobOffer, @RequestParam String driverId) throws Exception {
         try {
             JobOfferDto jobOfferDto = enterJobOfferService.enterJobOffer(jobOffer, driverId);
-            if(jobOfferDto == null) return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Driver Not Found\n");
-            return ResponseEntity.status(HttpStatus.CREATED).body("Job Offer created successfully\n");
+            if(jobOfferDto == null) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(jobOffer, HttpStatus.CREATED);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error\n");
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
