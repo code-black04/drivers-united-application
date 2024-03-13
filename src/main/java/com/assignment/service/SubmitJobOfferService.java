@@ -45,8 +45,6 @@ public class SubmitJobOfferService {
         // Update the DTO with route and payment calculation
         jobOfferDto = calculatePaymentAndUpdateJobOfferDto(jobOfferDto);
 
-        //TODO: Create new update method(ignore, don't create)
-
         jobOfferEntity = jobOfferDtoEntityMapper.convertToJobOfferEntity(jobOfferDto);
         jobOfferRepository.save(jobOfferEntity);
 
