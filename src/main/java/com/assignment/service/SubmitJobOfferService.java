@@ -2,6 +2,8 @@ package com.assignment.service;
 
 import com.assignment.dtos.JobOfferDto;
 import com.assignment.dtos.PaymentDetailsDto;
+import com.assignment.dtos.RouteAndTimeDetailsDto;
+import com.assignment.dtos.TravelTimeDetailsDto;
 import com.assignment.entity.JobOfferEntity;
 import com.assignment.enums.PaymentStatus;
 import com.assignment.mapper.JobOfferDtoEntityMapper;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 @Service
@@ -66,13 +69,32 @@ public class SubmitJobOfferService {
         String destination = String.join(",", destinationCoords); // London coordinates
 
         DirectionsResult directionsResult = getDirections(origin, destination);
-
         if (directionsResult != null && directionsResult.routes.length > 0) {
             double distanceInMeters = directionsResult.routes[0].legs[0].distance.inMeters;
+            long durationInSeconds = directionsResult.routes[0].legs[0].duration.inSeconds;
             float paymentAmount = calculatePaymentAmount(distanceInMeters);
-//            jobOfferDto.setPaymentDetails(new PaymentDetailsDto());
-            jobOfferDto.getPaymentDetails().setPaymentAmount(paymentAmount);
-            jobOfferDto.getPaymentDetails().setPaymentStatus(PaymentStatus.COMPLETED);
+
+            // Set payment details
+            PaymentDetailsDto paymentDetails = new PaymentDetailsDto();
+            paymentDetails.setPaymentAmount(paymentAmount);
+            paymentDetails.setPaymentStatus(PaymentStatus.COMPLETED);
+            jobOfferDto.setPaymentDetails(paymentDetails);
+
+            LocalDateTime currentTime = LocalDateTime.now();
+            LocalDateTime estimatedArrivalTime = currentTime.plusSeconds(durationInSeconds);
+            
+            // Set travel time details
+            TravelTimeDetailsDto travelTimeDetails = new TravelTimeDetailsDto();
+            travelTimeDetails.setDate(currentTime);
+            travelTimeDetails.setTime(estimatedArrivalTime);
+            travelTimeDetails.setDurationInSeconds(durationInSeconds);
+            
+            // Set route and time details
+            RouteAndTimeDetailsDto routeAndTimeDetails = new RouteAndTimeDetailsDto();
+            routeAndTimeDetails.setTravelTimeDetails(travelTimeDetails);
+
+            jobOfferDto.setRouteAndTimeDetails(routeAndTimeDetails);
+ 
         } else {
             throw new RuntimeException("Failed to calculate route.");
         }
