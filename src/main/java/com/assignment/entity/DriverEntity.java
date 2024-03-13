@@ -1,5 +1,7 @@
 package com.assignment.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.id.UUIDGenerator;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -12,8 +14,12 @@ public class DriverEntity {
 
     @Column(name = "driver_id")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
     private String driverId;
+
+    @Column(name = "user_name")
+    private String userName;
 
     @Column(name = "password")
     private String password;
@@ -35,8 +41,9 @@ public class DriverEntity {
     public DriverEntity() {
     }
 
-    public DriverEntity(String driverId, String password, List<FeedbackEntity> feedbacks, List<PaymentDetailsEntity> paymentDetailsList, List<JobOfferEntity> jobOffers, List<JobConfirmationEntity> jobConfirmations) {
+    public DriverEntity(String driverId, String userName, String password, List<FeedbackEntity> feedbacks, List<PaymentDetailsEntity> paymentDetailsList, List<JobOfferEntity> jobOffers, List<JobConfirmationEntity> jobConfirmations) {
         this.driverId = driverId;
+        this.userName = userName;
         this.password = password;
         this.feedbacks = feedbacks;
         this.paymentDetailsList = paymentDetailsList;
@@ -50,6 +57,14 @@ public class DriverEntity {
 
     public void setDriverId(String driverId) {
         this.driverId = driverId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -96,6 +111,7 @@ public class DriverEntity {
     public String toString() {
         return "DriverEntity{" +
                 "driverId='" + driverId + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", feedbacks=" + feedbacks +
                 ", paymentDetailsList=" + paymentDetailsList +
