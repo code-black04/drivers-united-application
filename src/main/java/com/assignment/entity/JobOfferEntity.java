@@ -23,34 +23,29 @@ public class JobOfferEntity {
     @JoinColumn(name = "driver_id")
     private DriverEntity driver;
 
-    @Embedded
-    private LocationDetailsEntity locationDetails; // Embedded location details
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "route_and_time_details_id")
     private RouteAndTimeDetailsEntity routeAndTimeDetails;
 
-    @OneToOne(mappedBy = "jobOffer", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "jobOffer",cascade = CascadeType.ALL)
     private PaymentDetailsEntity paymentDetails;
 
     @OneToOne(mappedBy = "jobOffer")
     private JobConfirmationEntity jobConfirmation;
 
+
     public JobOfferEntity() {
     }
 
-    public JobOfferEntity(Long jobOfferId, JobOfferStatus jobOfferStatus, String jobOfferDescription, DriverEntity driver, LocationDetailsEntity locationDetails, RouteAndTimeDetailsEntity routeAndTimeDetails, PaymentDetailsEntity paymentDetails, JobConfirmationEntity jobConfirmation) {
+    public JobOfferEntity(Long jobOfferId, JobOfferStatus jobOfferStatus, String jobOfferDescription, DriverEntity driver, RouteAndTimeDetailsEntity routeAndTimeDetails, PaymentDetailsEntity paymentDetails, JobConfirmationEntity jobConfirmation) {
         this.jobOfferId = jobOfferId;
         this.jobOfferStatus = jobOfferStatus;
         this.jobOfferDescription = jobOfferDescription;
         this.driver = driver;
-        this.locationDetails = locationDetails;
         this.routeAndTimeDetails = routeAndTimeDetails;
         this.paymentDetails = paymentDetails;
         this.jobConfirmation = jobConfirmation;
     }
-
-    // Getters and setters
 
     public Long getJobOfferId() {
         return jobOfferId;
@@ -84,38 +79,6 @@ public class JobOfferEntity {
         this.driver = driver;
     }
 
-    public LocationDetailsEntity getLocationDetails() {
-        return locationDetails;
-    }
-
-    public void setLocationDetails(LocationDetailsEntity locationDetails) {
-        this.locationDetails = locationDetails;
-    }
-
-    public RouteAndTimeDetailsEntity getRouteAndTimeDetails() {
-        return routeAndTimeDetails;
-    }
-
-    public void setRouteAndTimeDetails(RouteAndTimeDetailsEntity routeAndTimeDetails) {
-        this.routeAndTimeDetails = routeAndTimeDetails;
-    }
-
-    public PaymentDetailsEntity getPaymentDetails() {
-        return paymentDetails;
-    }
-
-    public void setPaymentDetails(PaymentDetailsEntity paymentDetails) {
-        this.paymentDetails = paymentDetails;
-    }
-
-    public JobConfirmationEntity getJobConfirmation() {
-        return jobConfirmation;
-    }
-
-    public void setJobConfirmation(JobConfirmationEntity jobConfirmation) {
-        this.jobConfirmation = jobConfirmation;
-    }
-
     @Override
     public String toString() {
         return "JobOfferEntity{" +
@@ -123,7 +86,6 @@ public class JobOfferEntity {
                 ", jobOfferStatus=" + jobOfferStatus +
                 ", jobOfferDescription='" + jobOfferDescription + '\'' +
                 ", driver=" + driver +
-                ", locationDetails=" + locationDetails +
                 ", routeAndTimeDetails=" + routeAndTimeDetails +
                 ", paymentDetails=" + paymentDetails +
                 ", jobConfirmation=" + jobConfirmation +
