@@ -1,5 +1,6 @@
 package com.assignment.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -9,18 +10,23 @@ public class DriverDto {
     @JsonProperty(value = "driverId")
     private String driverId;
 
+    @JsonIgnore
     @JsonProperty(value = "password")
     private String password;
 
+    @JsonIgnore
     @JsonProperty(value = "feedbacks")
     private List<FeedbackDto> feedbacks;
 
+    @JsonIgnore
     @JsonProperty(value = "paymentDetailsList")
     private List<PaymentDetailsDto> paymentDetailsList;
 
+    @JsonIgnore
     @JsonProperty(value = "jobOffers")
     private List<JobOfferDto> jobOffers;
 
+    @JsonIgnore
     @JsonProperty(value = "jobConfirmations")
     private List<JobConfirmationDto> jobConfirmations;
 
