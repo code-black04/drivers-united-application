@@ -15,7 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/jobs")
 public class SubmitJobOfferController {
 
     private final SubmitJobOfferService submitJobOfferService;
@@ -25,21 +25,18 @@ public class SubmitJobOfferController {
         this.submitJobOfferService = submitJobOfferService;
     }
 
-    @PostMapping("/jobs/{jobId}")
-    public ResponseEntity<?> submitJobOffer(@PathVariable Long jobId, @RequestBody JobOfferDto jobOfferDto) {
-        // Ensures jobId from path matches jobId in the request body, if necessary
-        if (!jobId.equals(jobOfferDto.getJobOfferId())) {
-            return ResponseEntity.badRequest().build();
-        }
+    @PostMapping
+    public ResponseEntity<JobOfferDto> submitJobOffer(@RequestBody JobOfferDto jobOfferDto) throws Exception {
 
         try {
             JobOfferDto submittedJobOfferDto = submitJobOfferService.submitJobOffer(jobOfferDto);
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                    .buildAndExpand(submittedJobOfferDto.getJobOfferId()).toUri();
-            return ResponseEntity.created(location).body(submittedJobOfferDto);
+            if (submittedJobOfferDto == null) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(submittedJobOfferDto, HttpStatus.CREATED);
         } catch (Exception e) {
             // Log the exception details here
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error submitting job offer: " + e.getMessage());
+            throw new Exception("Failed to submit job offer: ", e);
         }
     }
 }
