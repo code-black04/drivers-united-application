@@ -1,5 +1,6 @@
 package com.assignment.enums;
 
 public enum JobOfferStatus {
-    INITIALIZE
+    IN_PROGRESS,
+    COMPLETED
 }
