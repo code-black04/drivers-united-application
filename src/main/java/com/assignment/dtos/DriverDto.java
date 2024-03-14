@@ -1,17 +1,19 @@
 package com.assignment.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-@JsonIgnoreProperties({"password", "feedbacks", "paymentDetailsList", "jobOffers", "jobConfirmations"})
+@JsonIgnoreProperties({"password", "userName", "feedbacks", "paymentDetailsList", "jobOffers"})
 public class DriverDto {
 
     @JsonProperty(value = "driverId")
     private String driverId;
 
     @JsonProperty(value = "userName")
+    @JsonIgnore
     private String userName;
     @JsonProperty(value = "password")
     private String password;

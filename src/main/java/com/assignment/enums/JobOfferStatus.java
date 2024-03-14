@@ -3,7 +3,7 @@ package com.assignment.enums;
 public enum JobOfferStatus {
 
     IN_PROGRESS("In-Progress"),
-    PENDING("Pending"),
+    SUBMIT("Submit"),
     CONFIRMED("Confirmed"),
     CANCELLED("Cancelled");
 

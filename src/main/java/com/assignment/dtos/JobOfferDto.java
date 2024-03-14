@@ -1,6 +1,7 @@
 package com.assignment.dtos;
 
 import com.assignment.enums.JobOfferStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class JobOfferDto {

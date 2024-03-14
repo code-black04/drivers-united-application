@@ -1,9 +1,11 @@
 package com.assignment.dtos;
 
 import com.assignment.enums.JobOfferStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-public class DeliveryJobOfferDTO
-{
+
+@JsonIgnoreProperties({"driver"})
+public class DeliveryJobOfferDTO {
     @JsonProperty(value = "jobOfferId")
     private Long jobOfferId;
 
