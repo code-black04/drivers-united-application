@@ -25,7 +25,7 @@ public class DeliveryJobOfferController {
     public ResponseEntity<List<DeliveryJobOfferDTO>> getAvailableJobOffers() {
         List<DeliveryJobOfferDTO> deliveryJobOfferDTOList = availableJobService.getAllAvailableJobOffer();
         if (deliveryJobOfferDTOList != null)
-            return new ResponseEntity<>(deliveryJobOfferDTOList, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(deliveryJobOfferDTOList, HttpStatus.OK);
         else
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
