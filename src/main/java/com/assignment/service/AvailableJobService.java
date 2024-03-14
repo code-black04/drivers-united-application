@@ -14,6 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class AvailableJobService {
     private static final Logger logger = LoggerFactory.getLogger(AvailableJobService.class);
@@ -24,15 +27,17 @@ public class AvailableJobService {
     @Autowired
     private DeliveryJobOfferDtoEntityMapper jobOfferDtoEntityMapper;
 
-    public DeliveryJobOfferDTO getAvailableJobOfferById(String jobOfferId, String driverId) {
-        logger.info("AvailableJobService: getAvailableJobOfferById {}", jobOfferId);
+    public List<DeliveryJobOfferDTO> getAllAvailableJobOffer() {
         try {
-            DeliveryJobOfferEntity jobOfferEntity = jobOfferRepository.getById(Long.valueOf(jobOfferId));
-            if (jobOfferEntity != null && jobOfferEntity.getDriverId().equals(driverId)) {
-                DeliveryJobOfferDTO jobOfferDto = jobOfferDtoEntityMapper.convertToDeliveryJobOfferDto(jobOfferEntity);
-                return jobOfferDto;
-            } else
-                return null;
+            List<DeliveryJobOfferEntity> jobOfferEntityList = jobOfferRepository.findAll();
+            List<DeliveryJobOfferDTO> jobOfferDTOList = new ArrayList<>();
+            for (DeliveryJobOfferEntity jobOfferEntity : jobOfferEntityList) {
+                DeliveryJobOfferDTO jobOfferDTO = jobOfferDtoEntityMapper.convertToDeliveryJobOfferDto(jobOfferEntity);
+                jobOfferDTOList.add(jobOfferDTO);
+            }
+
+            return jobOfferDTOList;
+
         } catch (Exception exception) {
             System.out.println("Entity not found");
             return null;
