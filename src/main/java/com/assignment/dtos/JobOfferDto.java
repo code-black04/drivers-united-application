@@ -23,20 +23,16 @@ public class JobOfferDto {
     @JsonProperty(value = "paymentDetails")
     private PaymentDetailsDto paymentDetails;
 
-    @JsonProperty(value = "jobConfirmation")
-    private JobConfirmationDto jobConfirmation;
-
     public JobOfferDto() {
     }
 
-    public JobOfferDto(Long jobOfferId, JobOfferStatus jobOfferStatus, String jobOfferDescription, DriverDto driver, RouteAndTimeDetailsDto routeAndTimeDetails, PaymentDetailsDto paymentDetails, JobConfirmationDto jobConfirmation) {
+    public JobOfferDto(Long jobOfferId, JobOfferStatus jobOfferStatus, String jobOfferDescription, DriverDto driver, RouteAndTimeDetailsDto routeAndTimeDetails, PaymentDetailsDto paymentDetails) {
         this.jobOfferId = jobOfferId;
         this.jobOfferStatus = jobOfferStatus;
         this.jobOfferDescription = jobOfferDescription;
         this.driver = driver;
         this.routeAndTimeDetails = routeAndTimeDetails;
         this.paymentDetails = paymentDetails;
-        this.jobConfirmation = jobConfirmation;
     }
 
     public Long getJobOfferId() {
@@ -71,14 +67,6 @@ public class JobOfferDto {
         this.paymentDetails = paymentDetails;
     }
 
-    public JobConfirmationDto getJobConfirmation() {
-        return jobConfirmation;
-    }
-
-    public void setJobConfirmation(JobConfirmationDto jobConfirmation) {
-        this.jobConfirmation = jobConfirmation;
-    }
-
     public JobOfferStatus getJobOfferStatus() {
         return jobOfferStatus;
     }
@@ -104,7 +92,6 @@ public class JobOfferDto {
                 ", driver=" + driver +
                 ", routeAndTimeDetails=" + routeAndTimeDetails +
                 ", paymentDetails=" + paymentDetails +
-                ", jobConfirmation=" + jobConfirmation +
                 '}';
     }
 }

@@ -21,6 +21,14 @@ public class TravelTimeDetailsDto {
         this.durationInSeconds = durationInSeconds;
     }
 
+    public TravelTimeDetailsDto() {
+    }
+
+    public TravelTimeDetailsDto(LocalDateTime date, LocalDateTime time) {
+        this.date = date;
+        this.time = time;
+    }
+
     // Getter and setter for the new field
     public long getDurationInSeconds() {
         return durationInSeconds;
@@ -28,14 +36,6 @@ public class TravelTimeDetailsDto {
 
     public void setDurationInSeconds(long durationInSeconds) {
         this.durationInSeconds = durationInSeconds;
-    }
-
-    public TravelTimeDetailsDto() {
-    }
-
-    public TravelTimeDetailsDto(LocalDateTime date, LocalDateTime time) {
-        this.date = date;
-        this.time = time;
     }
 
     public LocalDateTime getDate() {

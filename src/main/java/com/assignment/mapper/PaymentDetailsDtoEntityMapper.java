@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class  PaymentDetailsDtoEntityMapper {
+public class PaymentDetailsDtoEntityMapper {
 
     @Autowired
     private ModelMapper modelMapper;
@@ -16,7 +16,7 @@ public class  PaymentDetailsDtoEntityMapper {
         PaymentDetailsDto paymentDetailsDto = modelMapper.map(paymentDetailsEntity, PaymentDetailsDto.class);
         return paymentDetailsDto;
     }
-    
+
     public PaymentDetailsEntity convertToPaymentDetailsEntity(PaymentDetailsDto paymentDetailsDto) {
         PaymentDetailsEntity paymentDetailsEntity = modelMapper.map(paymentDetailsDto, PaymentDetailsEntity.class);
         return paymentDetailsEntity;

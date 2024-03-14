@@ -1,33 +1,51 @@
 package com.assignment.service;
 
-import com.assignment.dtos.JobOfferDto;
-import com.assignment.dtos.PaymentDetailsDto;
-import com.assignment.dtos.RouteAndTimeDetailsDto;
-import com.assignment.dtos.TravelTimeDetailsDto;
+import com.assignment.dtos.*;
+import com.assignment.entity.DriverEntity;
+import com.assignment.entity.FeedbackEntity;
 import com.assignment.entity.JobOfferEntity;
+import com.assignment.enums.JobOfferStatus;
 import com.assignment.enums.PaymentStatus;
+import com.assignment.mapper.DriverDtoEntityMapper;
+import com.assignment.mapper.FeedbackDtoEntityMapper;
 import com.assignment.mapper.JobOfferDtoEntityMapper;
+import com.assignment.repository.DriverRepository;
+import com.assignment.repository.FeedbackRepository;
 import com.assignment.repository.JobOfferRepository;
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.TravelMode;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Random;
 
 @Service
-public class SubmitJobOfferService {
+public class DriverUnitedAppService {
+
+    @Autowired
+    private DriverRepository driverRepository;
 
     @Autowired
     private JobOfferRepository jobOfferRepository;
 
     @Autowired
     private JobOfferDtoEntityMapper jobOfferDtoEntityMapper;
+
+    @Autowired
+    private DriverDtoEntityMapper driverDtoEntityMapper;
+
+    @Autowired
+    private FeedbackRepository feedbackRepository;
+
+    @Autowired
+    private FeedbackDtoEntityMapper feedbackDtoEntityMapper;
 
     @Value("${google.maps.api.key}")
     private String googleMapsApiKey;
@@ -37,6 +55,18 @@ public class SubmitJobOfferService {
 
     @Value("${fare.costPerKilometer}")
     private float costPerKilometer;
+
+
+    public JobOfferDto enterJobOffer(JobOfferDto jobOfferDto, String driverId) throws Exception {
+        if (!driverRepository.existsById(driverId)) return null;
+        DriverEntity driverEntity = driverRepository.getById(driverId);
+        DriverDto driverDto = driverDtoEntityMapper.convertToDriverDto(driverEntity);
+        jobOfferDto.setDriver(driverDto);
+        jobOfferDto.setJobOfferStatus(JobOfferStatus.IN_PROGRESS);
+        JobOfferEntity jobOfferEntity = jobOfferDtoEntityMapper.convertToJobOfferEntity(jobOfferDto);
+        jobOfferRepository.save(jobOfferEntity);
+        return jobOfferDto;
+    }
 
     public JobOfferDto submitJobOffer(JobOfferDto jobOfferDto) throws Exception {
         // Use mapper to convert DTO to Entity
@@ -82,19 +112,19 @@ public class SubmitJobOfferService {
 
             LocalDateTime currentTime = LocalDateTime.now();
             LocalDateTime estimatedArrivalTime = currentTime.plusSeconds(durationInSeconds);
-            
+
             // Set travel time details
             TravelTimeDetailsDto travelTimeDetails = new TravelTimeDetailsDto();
             travelTimeDetails.setDate(currentTime);
             travelTimeDetails.setTime(estimatedArrivalTime);
             travelTimeDetails.setDurationInSeconds(durationInSeconds);
-            
+
             // Set route and time details
             RouteAndTimeDetailsDto routeAndTimeDetails = new RouteAndTimeDetailsDto();
             routeAndTimeDetails.setTravelTimeDetails(travelTimeDetails);
 
             jobOfferDto.setRouteAndTimeDetails(routeAndTimeDetails);
- 
+
         } else {
             throw new RuntimeException("Failed to calculate route.");
         }
@@ -116,9 +146,8 @@ public class SubmitJobOfferService {
         double randomLat = centerLat + offsetLat;
         double randomLng = centerLng + offsetLng;
 
-        return new String[] {Double.toString(randomLat), Double.toString(randomLng)};
+        return new String[]{Double.toString(randomLat), Double.toString(randomLng)};
     }
-
 
     private DirectionsResult getDirections(String origin, String destination) throws ApiException, InterruptedException, IOException {
         GeoApiContext context = new GeoApiContext.Builder().apiKey(googleMapsApiKey).build();
@@ -132,4 +161,16 @@ public class SubmitJobOfferService {
     private float calculatePaymentAmount(double distanceInMeters) {
         return baseFare + (float) (distanceInMeters / 1000.0 * costPerKilometer);
     }
+
+    public FeedbackDto createFeedbackAndReport(FeedbackDto requestedFeedback, String driverId) throws NotFoundException {
+        if (driverRepository.existsById(driverId)) {
+            requestedFeedback.getDriver().setDriverId(driverId);
+            FeedbackEntity feedbackEntity;
+            feedbackEntity = feedbackDtoEntityMapper.convertToFeedbackEntity(requestedFeedback);
+            feedbackRepository.save(feedbackEntity);
+            return requestedFeedback;
+        } else
+            return null;
+    }
+
 }

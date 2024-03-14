@@ -21,5 +21,5 @@ public class TravelTimeDetailsDtoEntity {
         TravelTimeDetailsEntity travelTimeDetailsEntity = modelMapper.map(travelTimeDetailsDto, TravelTimeDetailsEntity.class);
         return travelTimeDetailsEntity;
     }
-    
+
 }
