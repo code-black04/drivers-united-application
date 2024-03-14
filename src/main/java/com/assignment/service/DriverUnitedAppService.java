@@ -173,4 +173,20 @@ public class DriverUnitedAppService {
             return null;
     }
 
+    public JobOfferDto updateJobOfferById(String id, String driverId, String jobOfferStatus) {
+        JobOfferEntity jobOfferEntity = jobOfferRepository.getById(Long.parseLong(id));
+
+        if (jobOfferEntity.getJobOfferId() == null) {
+            throw new RuntimeException("Job confirmation object not found");
+        }
+
+        if (jobOfferEntity.getDriver().getDriverId().equals(driverId)) {
+            jobOfferEntity.setJobOfferStatus(JobOfferStatus.valueOfFeedbackStatus(jobOfferStatus));
+            jobOfferRepository.save(jobOfferEntity);
+        }
+
+        JobOfferDto jobOfferDto = jobOfferDtoEntityMapper.convertToJobOfferDto(jobOfferEntity);
+
+        return jobOfferDto;
+    }
 }
