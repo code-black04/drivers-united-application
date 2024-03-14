@@ -13,6 +13,14 @@ public class RouteAndTimeDetailsDto {
     @JsonProperty(value = "location")
     private LocationDetailsDto location;
 
+    public TravelTimeDetailsDto getTravelTimeDetails() {
+        return travelTimeDetails;
+    }
+
+    public void setTravelTimeDetails(TravelTimeDetailsDto travelTimeDetails) {
+        this.travelTimeDetails = travelTimeDetails;
+    }
+    
     public RouteAndTimeDetailsDto() {
     }
 

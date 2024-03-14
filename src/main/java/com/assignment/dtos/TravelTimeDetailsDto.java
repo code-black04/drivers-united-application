@@ -12,6 +12,23 @@ public class TravelTimeDetailsDto {
     @JsonProperty(value = "time")
     private LocalDateTime time;
 
+    @JsonProperty(value = "durationInSeconds")
+    private long durationInSeconds;
+
+    public TravelTimeDetailsDto(LocalDateTime date, LocalDateTime time, long durationInSeconds) {
+        this.date = date;
+        this.time = time;
+        this.durationInSeconds = durationInSeconds;
+    }
+
+    // Getter and setter for the new field
+    public long getDurationInSeconds() {
+        return durationInSeconds;
+    }
+
+    public void setDurationInSeconds(long durationInSeconds) {
+        this.durationInSeconds = durationInSeconds;
+    }
 
     public TravelTimeDetailsDto() {
     }
@@ -42,6 +59,7 @@ public class TravelTimeDetailsDto {
         return "TravelTimeDetailsDto{" +
                 "date=" + date +
                 ", time=" + time +
+                ", durationInSeconds=" + durationInSeconds +
                 '}';
     }
 }

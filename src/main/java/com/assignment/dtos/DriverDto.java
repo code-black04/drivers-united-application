@@ -10,6 +10,8 @@ public class DriverDto {
     @JsonProperty(value = "driverId")
     private String driverId;
 
+    @JsonProperty(value = "userName")
+    private String userName;
     @JsonProperty(value = "password")
     private String password;
 
@@ -25,16 +27,17 @@ public class DriverDto {
     @JsonProperty(value = "jobConfirmations")
     private List<JobConfirmationDto> jobConfirmations;
 
-    public DriverDto(String driverId, String password, List<FeedbackDto> feedbacks, List<PaymentDetailsDto> paymentDetailsList, List<JobOfferDto> jobOffers, List<JobConfirmationDto> jobConfirmations) {
+    public DriverDto() {
+    }
+
+    public DriverDto(String driverId, String userName, String password, List<FeedbackDto> feedbacks, List<PaymentDetailsDto> paymentDetailsList, List<JobOfferDto> jobOffers, List<JobConfirmationDto> jobConfirmations) {
         this.driverId = driverId;
+        this.userName = userName;
         this.password = password;
         this.feedbacks = feedbacks;
         this.paymentDetailsList = paymentDetailsList;
         this.jobOffers = jobOffers;
         this.jobConfirmations = jobConfirmations;
-    }
-
-    public DriverDto() {
     }
 
     public String getDriverId() {
@@ -43,6 +46,14 @@ public class DriverDto {
 
     public void setDriverId(String driverId) {
         this.driverId = driverId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -89,6 +100,7 @@ public class DriverDto {
     public String toString() {
         return "DriverDto{" +
                 "driverId='" + driverId + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", feedbacks=" + feedbacks +
                 ", paymentDetailsList=" + paymentDetailsList +
