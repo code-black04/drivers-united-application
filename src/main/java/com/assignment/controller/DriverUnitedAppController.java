@@ -66,4 +66,18 @@ public class DriverUnitedAppController {
         return new ResponseEntity<>(requestedFeedback, HttpStatus.CREATED);
     }
 
+    /**
+     * @author Soumik Datta
+     */
+    @PutMapping(path = "/jobs")
+    public ResponseEntity<JobOfferDto> confirmJobOffer(@RequestParam String jobId, @RequestParam String driverId, @RequestParam String jobOfferStatus){
+        if (jobId == null || driverId == null || jobOfferStatus == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        JobOfferDto jobOfferDto = driverUnitedAppService.updateJobOfferById(jobId, driverId, jobOfferStatus);
+
+        return new ResponseEntity<>(jobOfferDto, HttpStatus.OK);
+    }
+
 }
