@@ -26,13 +26,16 @@ public class AvailableJobService {
 
     public DeliveryJobOfferDTO getAvailableJobOfferById(String jobOfferId, String driverId) {
         logger.info("AvailableJobService: getAvailableJobOfferById {}", jobOfferId);
-        DeliveryJobOfferEntity jobOfferEntity = jobOfferRepository.getById(Long.valueOf(jobOfferId));
-        if (driverId.equals(jobOfferEntity.getDriverId()) && driverId == jobOfferEntity.getDriverId().toString()) {
-            DeliveryJobOfferDTO jobOfferDto = null;
-            if (jobOfferEntity != null)
-                jobOfferDto = jobOfferDtoEntityMapper.convertToDeliveryJobOfferDto(jobOfferEntity);
-            return jobOfferDto;
-        } else
+        try {
+            DeliveryJobOfferEntity jobOfferEntity = jobOfferRepository.getById(Long.valueOf(jobOfferId));
+            if (jobOfferEntity != null && jobOfferEntity.getDriverId().equals(driverId)) {
+                DeliveryJobOfferDTO jobOfferDto = jobOfferDtoEntityMapper.convertToDeliveryJobOfferDto(jobOfferEntity);
+                return jobOfferDto;
+            } else
+                return null;
+        } catch (Exception exception) {
+            System.out.println("Entity not found");
             return null;
+        }
     }
 }
