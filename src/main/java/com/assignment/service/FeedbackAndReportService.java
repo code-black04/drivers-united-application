@@ -27,14 +27,14 @@ public class FeedbackAndReportService {
     private FeedbackDtoEntityMapper feedbackDtoEntityMapper;
 
     public FeedbackDto createFeedbackAndReport(FeedbackDto requestedFeedback, String driverId) throws NotFoundException {
-        if (driverRepository.getById(driverId) != null) {
+        if (driverRepository.existsById(driverId)) {
             requestedFeedback.getDriver().setDriverId(driverId);
             logger.info("FeedbackService : createFeedBack {}", requestedFeedback);
             FeedbackEntity feedbackEntity;
             feedbackEntity = feedbackDtoEntityMapper.convertToFeedbackEntity(requestedFeedback);
             feedbackRepository.save(feedbackEntity);
             return requestedFeedback;
-        }  else
+        } else
             return null;
     }
 }
