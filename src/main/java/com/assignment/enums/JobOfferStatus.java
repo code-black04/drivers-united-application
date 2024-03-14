@@ -3,9 +3,9 @@ package com.assignment.enums;
 public enum JobOfferStatus {
 
     IN_PROGRESS("In-Progress"),
-    RECEIVED("Received"),
-    ACCEPTED("Accepted"),
-    COMPLETED("Completed");
+    PENDING("Pending"),
+    CONFIRMED("Confirmed"),
+    CANCELLED("Cancelled");
 
     public final String feedbackStatus;
 
