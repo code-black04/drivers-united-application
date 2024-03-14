@@ -1,11 +1,8 @@
 package com.assignment.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.id.UUIDGenerator;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +11,7 @@ public class DriverEntity {
 
     @Column(name = "driver_id")
     @Id
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @GeneratedValue(generator = "system-uuid")
     private String driverId;
 
@@ -24,31 +21,27 @@ public class DriverEntity {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "driver",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.REMOVE)
     private List<FeedbackEntity> feedbacks;
 
     @OneToMany
-    @JoinColumn(name="driver_id")
+    @JoinColumn(name = "driver_id")
     private List<PaymentDetailsEntity> paymentDetailsList;
 
     @OneToMany
-    @JoinColumn(name="driver_id")
+    @JoinColumn(name = "driver_id")
     private List<JobOfferEntity> jobOffers;
-
-    @OneToMany(mappedBy = "driver",cascade = CascadeType.REMOVE)
-    private List<JobConfirmationEntity> jobConfirmations;
 
     public DriverEntity() {
     }
 
-    public DriverEntity(String driverId, String userName, String password, List<FeedbackEntity> feedbacks, List<PaymentDetailsEntity> paymentDetailsList, List<JobOfferEntity> jobOffers, List<JobConfirmationEntity> jobConfirmations) {
+    public DriverEntity(String driverId, String userName, String password, List<FeedbackEntity> feedbacks, List<PaymentDetailsEntity> paymentDetailsList, List<JobOfferEntity> jobOffers) {
         this.driverId = driverId;
         this.userName = userName;
         this.password = password;
         this.feedbacks = feedbacks;
         this.paymentDetailsList = paymentDetailsList;
         this.jobOffers = jobOffers;
-        this.jobConfirmations = jobConfirmations;
     }
 
     public String getDriverId() {
@@ -99,14 +92,6 @@ public class DriverEntity {
         this.jobOffers = jobOffers;
     }
 
-    public List<JobConfirmationEntity> getJobConfirmations() {
-        return jobConfirmations;
-    }
-
-    public void setJobConfirmations(List<JobConfirmationEntity> jobConfirmations) {
-        this.jobConfirmations = jobConfirmations;
-    }
-
     @Override
     public String toString() {
         return "DriverEntity{" +
@@ -116,7 +101,6 @@ public class DriverEntity {
                 ", feedbacks=" + feedbacks +
                 ", paymentDetailsList=" + paymentDetailsList +
                 ", jobOffers=" + jobOffers +
-                ", jobConfirmations=" + jobConfirmations +
                 '}';
     }
 }

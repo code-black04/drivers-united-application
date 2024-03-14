@@ -2,9 +2,10 @@ package com.assignment.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
-@JsonIgnoreProperties({"password", "feedbacks"})
+@JsonIgnoreProperties({"password", "feedbacks", "paymentDetailsList", "jobOffers", "jobConfirmations"})
 public class DriverDto {
 
     @JsonProperty(value = "driverId")
@@ -24,20 +25,16 @@ public class DriverDto {
     @JsonProperty(value = "jobOffers")
     private List<JobOfferDto> jobOffers;
 
-    @JsonProperty(value = "jobConfirmations")
-    private List<JobConfirmationDto> jobConfirmations;
-
     public DriverDto() {
     }
 
-    public DriverDto(String driverId, String userName, String password, List<FeedbackDto> feedbacks, List<PaymentDetailsDto> paymentDetailsList, List<JobOfferDto> jobOffers, List<JobConfirmationDto> jobConfirmations) {
+    public DriverDto(String driverId, String userName, String password, List<FeedbackDto> feedbacks, List<PaymentDetailsDto> paymentDetailsList, List<JobOfferDto> jobOffers) {
         this.driverId = driverId;
         this.userName = userName;
         this.password = password;
         this.feedbacks = feedbacks;
         this.paymentDetailsList = paymentDetailsList;
         this.jobOffers = jobOffers;
-        this.jobConfirmations = jobConfirmations;
     }
 
     public String getDriverId() {
@@ -88,14 +85,6 @@ public class DriverDto {
         this.jobOffers = jobOffers;
     }
 
-    public List<JobConfirmationDto> getJobConfirmations() {
-        return jobConfirmations;
-    }
-
-    public void setJobConfirmations(List<JobConfirmationDto> jobConfirmations) {
-        this.jobConfirmations = jobConfirmations;
-    }
-
     @Override
     public String toString() {
         return "DriverDto{" +
@@ -105,7 +94,6 @@ public class DriverDto {
                 ", feedbacks=" + feedbacks +
                 ", paymentDetailsList=" + paymentDetailsList +
                 ", jobOffers=" + jobOffers +
-                ", jobConfirmations=" + jobConfirmations +
                 '}';
     }
 }

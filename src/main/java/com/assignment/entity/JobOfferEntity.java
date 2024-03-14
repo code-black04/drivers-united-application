@@ -27,24 +27,19 @@ public class JobOfferEntity {
     @JoinColumn(name = "route_and_time_details_id")
     private RouteAndTimeDetailsEntity routeAndTimeDetails;
 
-    @OneToOne(mappedBy = "jobOffer",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "jobOffer", cascade = CascadeType.ALL)
     private PaymentDetailsEntity paymentDetails;
-
-    @OneToOne(mappedBy = "jobOffer")
-    private JobConfirmationEntity jobConfirmation;
-
 
     public JobOfferEntity() {
     }
 
-    public JobOfferEntity(Long jobOfferId, JobOfferStatus jobOfferStatus, String jobOfferDescription, DriverEntity driver, RouteAndTimeDetailsEntity routeAndTimeDetails, PaymentDetailsEntity paymentDetails, JobConfirmationEntity jobConfirmation) {
+    public JobOfferEntity(Long jobOfferId, JobOfferStatus jobOfferStatus, String jobOfferDescription, DriverEntity driver, RouteAndTimeDetailsEntity routeAndTimeDetails, PaymentDetailsEntity paymentDetails) {
         this.jobOfferId = jobOfferId;
         this.jobOfferStatus = jobOfferStatus;
         this.jobOfferDescription = jobOfferDescription;
         this.driver = driver;
         this.routeAndTimeDetails = routeAndTimeDetails;
         this.paymentDetails = paymentDetails;
-        this.jobConfirmation = jobConfirmation;
     }
 
     public Long getJobOfferId() {
@@ -88,7 +83,6 @@ public class JobOfferEntity {
                 ", driver=" + driver +
                 ", routeAndTimeDetails=" + routeAndTimeDetails +
                 ", paymentDetails=" + paymentDetails +
-                ", jobConfirmation=" + jobConfirmation +
                 '}';
     }
 }

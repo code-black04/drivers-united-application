@@ -1,7 +1,6 @@
 package com.assignment.dtos;
 
 import com.assignment.enums.FeedbackStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class FeedbackDto {
