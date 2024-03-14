@@ -1,19 +1,33 @@
 package com.assignment.enums;
 
 public enum JobOfferStatus {
-    PENDING("Pending"), CONFIRMED("Confirmed"), CANCELLED("Cancelled"), IN_PROGRESS("In Progress");
 
-    public final String jobOfferStatus;
+    IN_PROGRESS("In-Progress"),
+    PENDING("Pending"),
+    CONFIRMED("Confirmed"),
+    CANCELLED("Cancelled");
 
-    private JobOfferStatus(String jobOfferStatus) {
-        this.jobOfferStatus = jobOfferStatus;
+    public final String feedbackStatus;
+
+    private JobOfferStatus(String feedbackStatus) {
+        this.feedbackStatus = feedbackStatus;
     }
 
-    public static JobOfferStatus valueOfFeedbackStatus(String jobOfferStatus) {
+
+    public static JobOfferStatus valueOfFeedbackStatus(String feedbackStatus) {
         for (JobOfferStatus jobOfferStatusValue : values()) {
-            if (jobOfferStatusValue.jobOfferStatus.equals(jobOfferStatus))
+            if (jobOfferStatusValue.feedbackStatus.equals(feedbackStatus))
                 return jobOfferStatusValue;
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "JobOfferStatus{" +
+                "feedbackStatus='" + feedbackStatus + '\'' +
+                '}';
+    }
 }
+
+
