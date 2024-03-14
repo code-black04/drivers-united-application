@@ -1,14 +1,18 @@
 package com.assignment.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+@JsonIgnoreProperties({"password", "feedbacks", "paymentDetailsList", "jobOffers", "jobConfirmations"})
 public class DriverDto {
 
     @JsonProperty(value = "driverId")
     private String driverId;
 
+    @JsonProperty(value = "userName")
+    private String userName;
     @JsonProperty(value = "password")
     private String password;
 
@@ -21,19 +25,16 @@ public class DriverDto {
     @JsonProperty(value = "jobOffers")
     private List<JobOfferDto> jobOffers;
 
-    @JsonProperty(value = "jobConfirmations")
-    private List<JobConfirmationDto> jobConfirmations;
+    public DriverDto() {
+    }
 
-    public DriverDto(String driverId, String password, List<FeedbackDto> feedbacks, List<PaymentDetailsDto> paymentDetailsList, List<JobOfferDto> jobOffers, List<JobConfirmationDto> jobConfirmations) {
+    public DriverDto(String driverId, String userName, String password, List<FeedbackDto> feedbacks, List<PaymentDetailsDto> paymentDetailsList, List<JobOfferDto> jobOffers) {
         this.driverId = driverId;
+        this.userName = userName;
         this.password = password;
         this.feedbacks = feedbacks;
         this.paymentDetailsList = paymentDetailsList;
         this.jobOffers = jobOffers;
-        this.jobConfirmations = jobConfirmations;
-    }
-
-    public DriverDto() {
     }
 
     public String getDriverId() {
@@ -42,6 +43,14 @@ public class DriverDto {
 
     public void setDriverId(String driverId) {
         this.driverId = driverId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -76,23 +85,15 @@ public class DriverDto {
         this.jobOffers = jobOffers;
     }
 
-    public List<JobConfirmationDto> getJobConfirmations() {
-        return jobConfirmations;
-    }
-
-    public void setJobConfirmations(List<JobConfirmationDto> jobConfirmations) {
-        this.jobConfirmations = jobConfirmations;
-    }
-
     @Override
     public String toString() {
         return "DriverDto{" +
                 "driverId='" + driverId + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", feedbacks=" + feedbacks +
                 ", paymentDetailsList=" + paymentDetailsList +
                 ", jobOffers=" + jobOffers +
-                ", jobConfirmations=" + jobConfirmations +
                 '}';
     }
 }

@@ -22,6 +22,14 @@ public class RouteAndTimeDetailsDto {
         this.location = location;
     }
 
+    public TravelTimeDetailsDto getTravelTimeDetails() {
+        return travelTimeDetails;
+    }
+
+    public void setTravelTimeDetails(TravelTimeDetailsDto travelTimeDetails) {
+        this.travelTimeDetails = travelTimeDetails;
+    }
+
     public String getRouteAndTimeDetailsId() {
         return routeAndTimeDetailsId;
     }

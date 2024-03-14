@@ -1,8 +1,6 @@
 package com.assignment.mapper;
 
-import com.assignment.dtos.DriverDto;
 import com.assignment.dtos.FeedbackDto;
-import com.assignment.entity.DriverEntity;
 import com.assignment.entity.FeedbackEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

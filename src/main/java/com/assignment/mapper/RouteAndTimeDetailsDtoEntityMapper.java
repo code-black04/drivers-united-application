@@ -21,5 +21,5 @@ public class RouteAndTimeDetailsDtoEntityMapper {
         RouteAndTimeDetailsEntity routeAndTimeDetailsEntity = modelMapper.map(routeAndTimeDetailsDto, RouteAndTimeDetailsEntity.class);
         return routeAndTimeDetailsEntity;
     }
-    
+
 }

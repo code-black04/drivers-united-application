@@ -21,5 +21,5 @@ public class LocationDetailsDtoEntityMapper {
         LocationDetailsEntity locationDetailsEntity = modelMapper.map(locationDetailsDto, LocationDetailsEntity.class);
         return locationDetailsEntity;
     }
-    
+
 }

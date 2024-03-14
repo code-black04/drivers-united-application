@@ -51,6 +51,13 @@ public class FeedbackDto {
         this.feedbackDescription = feedbackDescription;
     }
 
+    public DriverDto getDriver() {
+        return driver;
+    }
+
+    public void setDriver(DriverDto driver) {
+        this.driver = driver;
+    }
 
     @Override
     public String toString() {

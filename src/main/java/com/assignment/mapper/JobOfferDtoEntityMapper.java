@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JobOfferDtoEntityMapper {
-    
+
     @Autowired
     private ModelMapper modelMapper;
 

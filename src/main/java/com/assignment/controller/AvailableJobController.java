@@ -19,7 +19,6 @@ public class AvailableJobController {
     private AvailableJobService availableJobService;
 
     @GetMapping(path = "/jobs")
-
     public ResponseEntity<DeliveryJobOfferDTO> getAvailableJobOffers(
             @RequestParam(required = true, value = "jobOfferId") String jobOfferId,
             @RequestParam(required = true, value="driverId") String driverId
