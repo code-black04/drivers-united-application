@@ -6,14 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-@JsonIgnoreProperties({"password", "userName", "feedbacks", "paymentDetailsList", "jobOffers"})
+@JsonIgnoreProperties({"feedbacks", "paymentDetailsList", "jobOffers"})
 public class DriverDto {
 
     @JsonProperty(value = "driverId")
     private String driverId;
 
     @JsonProperty(value = "userName")
-    @JsonIgnore
     private String userName;
     @JsonProperty(value = "password")
     private String password;
