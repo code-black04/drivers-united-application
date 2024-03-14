@@ -26,7 +26,7 @@ public class AvailableJobService {
 
     public DeliveryJobOfferDTO getAvailableJobOfferById(String jobOfferId, String driverId) {
         logger.info("AvailableJobService: getAvailableJobOfferById {}", jobOfferId);
-        DeliveryJobOfferEntity jobOfferEntity = jobOfferRepository.getById(jobOfferId);
+        DeliveryJobOfferEntity jobOfferEntity = jobOfferRepository.getById(Long.valueOf(jobOfferId));
         if (driverId.equals(jobOfferEntity.getDriverId()) && driverId == jobOfferEntity.getDriverId().toString()) {
             DeliveryJobOfferDTO jobOfferDto = null;
             if (jobOfferEntity != null)
