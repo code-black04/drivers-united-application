@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import static com.assignment.CommonUtils.extractUsername;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/driver")
 @Api
 public class DriverUnitedAppController {
 
@@ -57,20 +57,17 @@ public class DriverUnitedAppController {
      */
     @PostMapping(path = "/jobs/feedback")
     public ResponseEntity<FeedbackDto> createFeedbackAndReport(
-            @RequestBody(required = true) FeedbackDto feedback,
-            @RequestHeader(required = true) String Authorization
+            @RequestBody(required = true) FeedbackDto feedback
     ) throws NotFoundException {
-        String token = Authorization.substring(6);
-        String driverId = extractUsername(token);
-        FeedbackDto requestedFeedback = driverUnitedAppService.createFeedbackAndReport(feedback, driverId);
+        FeedbackDto requestedFeedback = driverUnitedAppService.createFeedbackAndReport(feedback);
         return new ResponseEntity<>(requestedFeedback, HttpStatus.CREATED);
     }
 
     /**
      * @author Soumik Datta
      */
-    @PutMapping(path = "/jobs")
-    public ResponseEntity<JobOfferDto> confirmJobOffer(@RequestParam String jobId, @RequestParam String driverId, @RequestParam String jobOfferStatus){
+    @PutMapping(path = "/jobs/confirm")
+    public ResponseEntity<JobOfferDto> confirmJobOffer(@RequestParam String jobId, @RequestParam String driverId, @RequestParam String jobOfferStatus) {
         if (jobId == null || driverId == null || jobOfferStatus == null) {
             return ResponseEntity.badRequest().body(null);
         }

@@ -1,14 +1,17 @@
 package com.assignment.service;
 
 import com.assignment.dtos.*;
+import com.assignment.entity.DeliveryJobOfferEntity;
 import com.assignment.entity.DriverEntity;
 import com.assignment.entity.FeedbackEntity;
 import com.assignment.entity.JobOfferEntity;
+import com.assignment.enums.FeedbackStatus;
 import com.assignment.enums.JobOfferStatus;
 import com.assignment.enums.PaymentStatus;
 import com.assignment.mapper.DriverDtoEntityMapper;
 import com.assignment.mapper.FeedbackDtoEntityMapper;
 import com.assignment.mapper.JobOfferDtoEntityMapper;
+import com.assignment.repository.DeliveryJobOfferRepository;
 import com.assignment.repository.DriverRepository;
 import com.assignment.repository.FeedbackRepository;
 import com.assignment.repository.JobOfferRepository;
@@ -47,6 +50,9 @@ public class DriverUnitedAppService {
     @Autowired
     private FeedbackDtoEntityMapper feedbackDtoEntityMapper;
 
+    @Autowired
+    private DeliveryJobOfferRepository deliveryJobOfferRepository;
+
     @Value("${google.maps.api.key}")
     private String googleMapsApiKey;
 
@@ -69,16 +75,13 @@ public class DriverUnitedAppService {
     }
 
     public JobOfferDto submitJobOffer(JobOfferDto jobOfferDto) throws Exception {
-        // Use mapper to convert DTO to Entity
-        JobOfferEntity jobOfferEntity = jobOfferDtoEntityMapper.convertToJobOfferEntity(jobOfferDto);
-
-        // Save the entity
-        jobOfferEntity = jobOfferRepository.save(jobOfferEntity);
 
         // Update the DTO with route and payment calculation
         jobOfferDto = calculatePaymentAndUpdateJobOfferDto(jobOfferDto);
+        jobOfferDto.setJobOfferStatus(JobOfferStatus.SUBMIT);
+        // Use mapper to convert DTO to Entity
+        JobOfferEntity jobOfferEntity = jobOfferDtoEntityMapper.convertToJobOfferEntity(jobOfferDto);
 
-        jobOfferEntity = jobOfferDtoEntityMapper.convertToJobOfferEntity(jobOfferDto);
         jobOfferRepository.save(jobOfferEntity);
 
         return jobOfferDto;
@@ -106,6 +109,11 @@ public class DriverUnitedAppService {
 
             // Set payment details
             PaymentDetailsDto paymentDetails = new PaymentDetailsDto();
+            Random random = new Random();
+            long paymentIdLong = Math.abs(random.nextLong());
+
+            String paymentId = Long.toString(paymentIdLong);
+            paymentDetails.setPaymentId(paymentId);
             paymentDetails.setPaymentAmount(paymentAmount);
             paymentDetails.setPaymentStatus(PaymentStatus.COMPLETED);
             jobOfferDto.setPaymentDetails(paymentDetails);
@@ -162,15 +170,12 @@ public class DriverUnitedAppService {
         return baseFare + (float) (distanceInMeters / 1000.0 * costPerKilometer);
     }
 
-    public FeedbackDto createFeedbackAndReport(FeedbackDto requestedFeedback, String driverId) throws NotFoundException {
-        if (driverRepository.existsById(driverId)) {
-            requestedFeedback.getDriver().setDriverId(driverId);
+    public FeedbackDto createFeedbackAndReport(FeedbackDto requestedFeedback) throws NotFoundException {
+            requestedFeedback.setFeedbackStatus(FeedbackStatus.SEND);
             FeedbackEntity feedbackEntity;
             feedbackEntity = feedbackDtoEntityMapper.convertToFeedbackEntity(requestedFeedback);
             feedbackRepository.save(feedbackEntity);
             return requestedFeedback;
-        } else
-            return null;
     }
 
     public JobOfferDto updateJobOfferById(String id, String driverId, String jobOfferStatus) {

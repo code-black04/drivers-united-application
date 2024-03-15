@@ -9,13 +9,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
 
     @Autowired
     private CustomAuthenticator authProvider;
@@ -35,7 +33,7 @@ public class SecurityConfig {
                 .authenticated()
                 .and()
                 .httpBasic().and();
-        
+
         http.headers().frameOptions().disable();
         return http.build();
     }

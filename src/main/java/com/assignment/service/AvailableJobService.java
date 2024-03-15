@@ -1,14 +1,9 @@
 package com.assignment.service;
 
 import com.assignment.dtos.DeliveryJobOfferDTO;
-import com.assignment.dtos.JobOfferDto;
 import com.assignment.entity.DeliveryJobOfferEntity;
-import com.assignment.entity.JobOfferEntity;
 import com.assignment.mapper.DeliveryJobOfferDtoEntityMapper;
-import com.assignment.mapper.JobOfferDtoEntityMapper;
 import com.assignment.repository.DeliveryJobOfferRepository;
-import com.assignment.repository.JobOfferRepository;
-import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

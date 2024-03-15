@@ -1,6 +1,7 @@
 package com.assignment.dtos;
 
 import com.assignment.enums.FeedbackStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class FeedbackDto {
@@ -15,6 +16,7 @@ public class FeedbackDto {
     private String feedbackDescription;
 
     @JsonProperty(value = "driver")
+    @JsonIgnore
     private DriverDto driver;
 
     public FeedbackDto() {
