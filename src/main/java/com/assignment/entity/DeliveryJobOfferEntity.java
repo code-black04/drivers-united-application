@@ -5,8 +5,9 @@ import com.assignment.enums.JobOfferStatus;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "job_offer")
-public class JobOfferEntity {
+@Table(name = "delivery_job_offer")
+public class DeliveryJobOfferEntity {
+
 
     @Id
     @Column(name = "job_offer_id")
@@ -19,28 +20,8 @@ public class JobOfferEntity {
     @Column(name = "job_offer_description")
     private String jobOfferDescription;
 
-    @ManyToOne
-    @JoinColumn(name = "driver_id")
-    private DriverEntity driver;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "route_and_time_details_id")
-    private RouteAndTimeDetailsEntity routeAndTimeDetails;
-
-    @OneToOne(mappedBy = "jobOffer", cascade = CascadeType.ALL)
-    private PaymentDetailsEntity paymentDetails;
-
-    public JobOfferEntity() {
-    }
-
-    public JobOfferEntity(Long jobOfferId, JobOfferStatus jobOfferStatus, String jobOfferDescription, DriverEntity driver, RouteAndTimeDetailsEntity routeAndTimeDetails, PaymentDetailsEntity paymentDetails) {
-        this.jobOfferId = jobOfferId;
-        this.jobOfferStatus = jobOfferStatus;
-        this.jobOfferDescription = jobOfferDescription;
-        this.driver = driver;
-        this.routeAndTimeDetails = routeAndTimeDetails;
-        this.paymentDetails = paymentDetails;
-    }
+    @Column(name = "driver_id")
+    private String driverId;
 
     public Long getJobOfferId() {
         return jobOfferId;
@@ -66,12 +47,12 @@ public class JobOfferEntity {
         this.jobOfferDescription = jobOfferDescription;
     }
 
-    public DriverEntity getDriver() {
-        return driver;
+    public String getDriverId() {
+        return driverId;
     }
 
-    public void setDriver(DriverEntity driver) {
-        this.driver = driver;
+    public void setDriverId(String driverId) {
+        this.driverId = driverId;
     }
 
     @Override
@@ -80,9 +61,9 @@ public class JobOfferEntity {
                 "jobOfferId=" + jobOfferId +
                 ", jobOfferStatus=" + jobOfferStatus +
                 ", jobOfferDescription='" + jobOfferDescription + '\'' +
-                ", driver=" + driver +
-                ", routeAndTimeDetails=" + routeAndTimeDetails +
-                ", paymentDetails=" + paymentDetails +
+                ", driverId='" + driverId + '\'' +
                 '}';
     }
 }
+
+

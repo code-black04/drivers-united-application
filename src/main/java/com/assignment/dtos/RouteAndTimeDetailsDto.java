@@ -1,7 +1,10 @@
 package com.assignment.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties({"routeAndTimeDetailsId", "location"})
 public class RouteAndTimeDetailsDto {
 
     @JsonProperty(value = "routeAndTimeDetailsId")
@@ -20,6 +23,14 @@ public class RouteAndTimeDetailsDto {
         this.routeAndTimeDetailsId = routeAndTimeDetailsId;
         this.travelTimeDetails = travelTimeDetails;
         this.location = location;
+    }
+
+    public TravelTimeDetailsDto getTravelTimeDetails() {
+        return travelTimeDetails;
+    }
+
+    public void setTravelTimeDetails(TravelTimeDetailsDto travelTimeDetails) {
+        this.travelTimeDetails = travelTimeDetails;
     }
 
     public String getRouteAndTimeDetailsId() {
